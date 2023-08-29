@@ -1,7 +1,8 @@
-
+from PIL import ImageTk
 from tkinter import *
 from tkinter import messagebox
-#------------------------BACK END-------------------------------------
+
+# ------------------------BACK END-------------------------------------
 class Login:
     def __init__(self, account):
         self.account = account
@@ -32,12 +33,18 @@ class Register:
         user_name = entry_email.get()  # Lấy giá trị từ widget entry_email
         password = entry_password.get()  # Lấy giá trị từ widget entry_password
         self.add(user_name, password)
-#---------------------------FONT END----------------------------------
-desktop = Tk()
-desktop.title("THE FISTH MY APP")
-desktop.geometry("350x250")
 
-Label(desktop, text="APP ngân hàng", fg='red', font=("time new roman", 18), width=25).grid(row=0, column=0, columnspan=2, sticky='e')
+# ---------------------------FONT END----------------------------------
+desktop = Tk()
+desktop.title("Bitcoin")
+desktop.geometry("350x250")
+desktop.iconbitmap("bitcoin.ico")
+
+load = ImageTk.PhotoImage(file='background.png')
+curent = load
+img = Label(desktop, image=curent)
+
+# Label(desktop, text="Sàn giao dịch bitcoin", fg='red', font=("time new roman", 18), width=25).grid(row=0, column=0, columnspan=2, sticky='e')
 
 # Email
 Label(desktop, text="Email", fg='blue').grid(row=1, column=0, sticky='ne')
@@ -61,5 +68,5 @@ login_button.grid(row=3, column=0, padx=5, pady=5)
 register_button = Button(desktop, text="Register", command=register_account.register)
 register_button.grid(row=3, column=1, padx=5, pady=5)
 
-#-----------------MAIN------------------------
+# -----------------MAIN------------------------
 desktop.mainloop()
