@@ -56,7 +56,7 @@ class PageLogin:
         # Password
         self.password_label = Label(self.app, text="PASSWORD", font=("Arial", 10), fg="#FF6699",anchor="w")
         self.password_label.place(x=9, y=178)
-        self.input_password = Entry(self.app, width=35)
+        self.input_password = Entry(self.app, width=35,show="*")
         self.input_password.place(x=100, y=183)
 
         # Dữ liệu người dùng database
