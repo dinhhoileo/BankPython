@@ -15,6 +15,8 @@ class Login:
             messagebox.showinfo("Thông báo", "Bạn chưa đăng ký")
         elif user_name in self.account and self.account[user_name] == password:
             messagebox.showinfo("Thông báo", "Đăng nhập thành công")
+            self.page_login.app.destroy() 
+            home_page=HomePage()
 
         else:
             messagebox.showinfo("Thông báo", "Đăng nhập thất bại")
@@ -30,6 +32,7 @@ class Register:
         else:
             self.account[user_name] = password
             messagebox.showinfo("Thông báo", "Đăng ký thành công")
+            self.page_login.app.destroy() 
             home_page=HomePage()
 
     def register(self):
@@ -72,15 +75,40 @@ class PageLogin:
         self.register_button = Button(self.app, text="REGISTER", command=self.register_account.register, bg="orange", fg="red")
         self.register_button.place(x=190, y=212)
         self.app.mainloop()
-
-class HomePage:
-    def __init__(self):
-        self.app =Tk()
-        self.app.title("Home Page")
-        self.app.iconbitmap("home page.ico")
-        test_label = Label(self.app,text="Hello this is new page").pack()
-        self.app.mainloop()
-    def logout(self):
+# class HomePage:
+#     def __init__(self):
+#         self.app =Tk()
+#         self.app.geometry("900x400")
+#         self.app.title("Home Page")
+#         self.app.iconbitmap("home page.ico")
+        
+#         value_balance_label=Label(self.app,width=58,height=28)
+#         value_balance_label.place(x=413,y=63)
+#         despoit_button =Button(self.app,text="Despoit",font=("Arial",13),fg="Blue",width=8)
+#         despoit_button.place(x=250,y=123)
+#         withdraw_button =Button(self.app,text="Withdraw",font=("Arial",13),fg="Blue",width=8)
+#         withdraw_button.place(x=423,y=124)
+#         transfer_button =Button(self.app,text="Transfer",font=("Arial",13),fg="Blue",width=8)
+#         transfer_button.place(x=584,y=123)
+#         back_button=Button(self.app,text="BACK",command=self.back,font=("Arial",12),width=12,fg="White",bg="orange")
+#         back_button.place(x=20,y=20)
+        
+        
+#         bitcoin_label=Label(self.app,text="BTC",font=("Arial",20))
+#         bitcoin_label.place(x=114,y=231)
+        
+#         ethereum_label=Label(self.app,text="ETH",font=("Arial",20))
+#         ethereum_label.place(x=114,y=271)
+        
+#         binance_label=Label(self.app,text="BNB",font=("Arial",20))
+#         binance_label.place(x=114,y=311)
+        
+#         usdt_label=Label(self.app,text="USDT",font=("Arial",20))
+#         usdt_label.place(x=114,y=350)
+        
+        
+#         self.app.mainloop()
+    def back(self):
         self.app.destroy()
         login_page = PageLogin()
         
