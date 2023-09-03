@@ -1,7 +1,8 @@
 from tkinter import *
 from PIL import ImageTk
 from tkinter import messagebox  
-
+#----------------------------Back end------------------------------
+#-----------login page----------
 class Login:
     def __init__(self, account, page_login):
         self.account = account
@@ -39,8 +40,31 @@ class Register:
         user_name = self.page_login.input_email.get()  # Lấy giá trị từ widget entry_email
         password = self.page_login.input_password.get()  # Lấy giá trị từ widget entry_password
         self.add(user_name, password)
+#------------home page--------------
 
+class Event:
+    def __init__(self,balance_entry):
+        self.balance_entry=balance_entry
+    def deposit(self):
+        self.app =Tk()
+        self.app.geometry("120x120")
+        self.app.title("Deposit")
+        self.app.iconbitmap("cong.ico")
+        deposit_entry=Entry(self.app,width=9,font=("Helvetica",15))
+        deposit_entry.place(x=10,y=27)
+        button_deposit =Button(self.app,text="Deposit",font=("Arial",10),fg="Blue",width=12,height=2)
+        button_deposit.place(x=10,y=73)
+        
+        value_entry = float(deposit_entry.get())
+        curent_balance=float(self.balance_entry.get())
+        new_balance=curent_balance+value_entry
+        self.balance_entry.delete(0,END)
+        self.balance_entry.insert(0,new_balance)
 
+        # Clear the deposit entry widget
+        self.app.mainloop()
+
+#---------------------------Front end-------------------------------
 class PageLogin:
     def __init__(self):
         self.app = Tk()
@@ -88,8 +112,10 @@ class HomePage:
         self.balance_entry = Entry(self.app, width=10, justify="center",font=("Arial",24))
         self.balance_entry.insert(0, balance_value)  # Chèn giá trị số dư vào ô vuông
         self.balance_entry.place(x=400, y=63)
+        #lời goi lớp event
+        self.event = Event(self.balance_entry)
         
-        deposit_button = Button(self.app, text="Deposit", font=("Arial", 13), fg="Blue", width=8)
+        deposit_button = Button(self.app, text="Deposit",command=self.event.deposit ,font=("Arial", 13), fg="Blue", width=8)
         deposit_button.place(x=250, y=123)
         
         withdraw_button = Button(self.app, text="Withdraw", font=("Arial", 13), fg="Blue", width=8)
@@ -134,10 +160,10 @@ class HomePage:
     def back(self):
         self.app.destroy()
         login_page = PageLogin()
-
+#--------------------------interface--------------------------
 class App:
     def __init__(self):
         self.new_app = PageLogin()
-
+#-------------------------Main--------------------------
 if __name__ == "__main__":
     new_app = App()
