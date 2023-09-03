@@ -20,7 +20,6 @@ class Login:
             home_page.show_balance()  # Hiển thị số dư
         else:
             messagebox.showinfo("Thông báo", "Đăng nhập thất bại")
-
 class Register:
     def __init__(self, account, page_login):
         self.account = account
@@ -51,9 +50,12 @@ class PageLogin:
         back_ground_image = ImageTk.PhotoImage(file="background.png")
         back_ground_label = Label(self.app, image=back_ground_image)
         back_ground_label.place(x=0, y=0, relwidth=1, relheight=1)  # Đặt hình ảnh nền kích thước toàn bộ giao diện
-        welcome_text="Welcome Back!"
-        self.welcome_label = Label(self.app, text=welcome_text.strip(), font=("Arial", 25), fg="orange",bg="#19141A", anchor="center")
+        self.welcome_label = Label(self.app, text="WELCOME BACK!", font=("Arial", 25), fg="orange",bg="#19141A", anchor="center")
         self.welcome_label.pack()
+        # Dữ liệu người dùng database
+        self.account_data = {}
+        self.register_account = Register(self.account_data, self)
+        self.login_account = Login(self.account_data, self)
 
         # Email
         self.email_label = Label(self.app, text="EMAIL", font=("Arial", 10), fg="white",bg="#613A29", anchor="w")
@@ -66,11 +68,6 @@ class PageLogin:
         self.password_label.place(x=9, y=178)
         self.input_password = Entry(self.app, width=35, show="*")
         self.input_password.place(x=100, y=183)
-
-        # Dữ liệu người dùng database
-        self.account_data = {}
-        self.register_account = Register(self.account_data, self)
-        self.login_account = Login(self.account_data, self)
 
         # Login button
         self.login_button = Button(self.app, text="LOGIN", command=self.login_account.check_login, bg="#9400D3",fg="white")
@@ -114,11 +111,6 @@ class HomePage:
         bitcoin_label.place(x=114, y=231)
         price_btc=Entry(self.app,width=13,font=("Arial",13),justify="center")
         price_btc.place(x=239,y=235)
-        # Hình ảnh Bitcoin (BTC)
-        # btc_image = ImageTk.PhotoImage(file="btc.png")
-        # btc_image.resize(40,39)
-        # btc_label = Label(self.app, image=btc_image)
-        # btc_label.place(x=58, y=219)
         
         ethereum_label = Label(self.app, text="ETH", font=("Arial", 10),justify="center")
         ethereum_label.place(x=114, y=271)
